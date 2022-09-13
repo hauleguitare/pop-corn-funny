@@ -6,6 +6,7 @@ This project was using ReactJs, Redux Core, React Router, Tailwindcss,...
 ## Information
 
 Project uses the public API from Themoviedb to receive reviews and ongoing updates on released and released movies around the world.
+Website responsive for many device!!!
 
 ## Homepage
 **Banner homepage**
