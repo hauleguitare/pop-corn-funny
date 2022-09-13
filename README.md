@@ -1,11 +1,21 @@
-# Getting Started with Create React App
+# Getting Started with Popcorn TV
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was using ReactJs, Redux Core, React Router, Tailwindcss,...
 
-## Available Scripts
 
-In the project directory, you can run:
+## Information
 
+Project uses the public API from Themoviedb to receive reviews and ongoing updates on released and released movies around the world.
+
+## Homepage
+
+![alt text](./src/asserts/images/screenshot_banner.png)
+**You can see everyone movie you like it!**
+
+**This project of mine is currently in the construction and development stage, so it can't be perfect the way it aims, so please help me to finish this project soon with the mind to learn more about the libraries. as well as how to implement the project.**
+
+
+## Deloy source code
 ### `yarn start`
 
 Runs the app in the development mode.\

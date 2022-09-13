@@ -1,0 +1,4 @@
+.button-active{
+    @apply bg-sky-500;
+    @apply text-black;
+}
