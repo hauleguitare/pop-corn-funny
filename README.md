@@ -8,8 +8,11 @@ This project was using ReactJs, Redux Core, React Router, Tailwindcss,...
 Project uses the public API from Themoviedb to receive reviews and ongoing updates on released and released movies around the world.
 
 ## Homepage
-
+**Banner homepage**
 ![alt text](./src/asserts/images/screenshot_banner.png)
+
+**Banner homepage**
+![alt text](./src/asserts/images/screenshot_section.png)
 **You can see everyone movie you like it!**
 
 **This project of mine is currently in the construction and development stage, so it can't be perfect the way it aims, so please help me to finish this project soon with the mind to learn more about the libraries. as well as how to implement the project.**
