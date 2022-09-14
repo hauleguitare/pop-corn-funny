@@ -1,7 +1,7 @@
 import { IButtonProps, IGenres } from '@/@types/global/ButtonProps';
 import { IMovie } from '@/@types/movies';
 import dataFetch from '@/utils/dataFetch';
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useContext, useEffect, useState } from 'react';
 import ContentLoading from './Loading';
 import ContentSlider from './Slider';
 import ContentGenres from './Genres';
@@ -58,17 +58,28 @@ const SectionContent: React.FunctionComponent<ISectionContentProps> = (props) =>
                     <ContentSlider onReview={handleOnReview} resource={resource} genre={activeId} />
                 </Suspense>
             </div>
-            {reviewMovie && (
-                <ReviewCard
-                    reviewMovie={reviewMovie}
-                    onClickClose={(e) => {
-                        setReviewMovie(null);
-                    }}
-                    className={`${
-                        reviewMovie ? 'visible' : 'invisible'
-                    } fixed inset-0 bg-black opacity-100 transition-all ease-in duration-500 max-w-[1200px] max-h[100%] rounded-lg mx-auto my-auto z-10 overscroll-auto overflow-auto`}
-                />
-            )}
+            <ReviewCard
+                reviewMovie={reviewMovie}
+                type={activeId.id}
+                onClickClose={(e) => {
+                    setReviewMovie(null);
+                }}
+                className={`${
+                    reviewMovie ? 'w-full h-full' : 'w-0 h-0'
+                } fixed inset-0 bg-stone-dark-lighting transition-combineWH
+                     ease-in-out max-w-[1024px] h-full duration-700 rounded-lg mx-auto my-4
+                     z-20 overscroll-contain overflow-auto
+                      scrollbar-thin
+                      `}
+            />
+            <div
+                onClick={(e) => {
+                    setReviewMovie(null);
+                }}
+                className={`${
+                    reviewMovie ? 'visible' : 'invisible'
+                } fixed inset-0 ease-linear bg-black/50 opacity-90 z-10`}
+            ></div>
         </section>
     );
 };

@@ -35,6 +35,7 @@ const ContentSlider: React.FunctionComponent<IContentSliderProps> = (props) => {
             slidesPerView={'auto'}
             slidesPerGroup={5}
             modules={[Navigation]}
+            watchSlidesProgress
             breakpoints={{
                 370: {
                     width: 460,

@@ -865,6 +865,7 @@ module.exports = {
     transitionProperty: {
       none: 'none',
       all: 'all',
+      combineWH: 'width, height',
       DEFAULT:
         'color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
       colors: 'color, background-color, border-color, text-decoration-color, fill, stroke',
@@ -989,6 +990,7 @@ module.exports = {
     'disabled',
   ],
   plugins: [
+    require('tailwind-scrollbar'),
   ],
 }
 
