@@ -1,7 +1,9 @@
+import { IGenres } from '@/@types/global/ButtonProps';
 import { IReturnWrapPromise } from '@/@types/global/WrapPromiseType';
 import { IMovie, ListResponse } from '@/@types/movies';
 import CardItem from '@/components/CardItem';
-import * as React from 'react';
+import ReviewCard from '@/components/ReviewCard';
+import React, { useState } from 'react';
 import { GrNext, GrPrevious } from 'react-icons/gr';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,11 +12,24 @@ interface IContentSliderProps {
     resource: {
         data: IReturnWrapPromise<ListResponse<IMovie>>;
     };
+    genre: IGenres;
+    onReview: (item: IMovie) => void;
 }
 
 const ContentSlider: React.FunctionComponent<IContentSliderProps> = (props) => {
-    const { resource } = props;
+    const { resource, genre, onReview } = props;
+    const [genres, setGenres] = useState(genre);
     const data = resource.data.read();
+
+    const onReviewMovie = (e: React.MouseEvent | React.TouchEvent, id: string | number) => {
+        e.preventDefault();
+        data?.results.map((item) => {
+            if (item.id === id) {
+                onReview(item);
+            }
+        });
+    };
+
     return (
         <Swiper
             slidesPerView={'auto'}
@@ -52,7 +67,12 @@ const ContentSlider: React.FunctionComponent<IContentSliderProps> = (props) => {
             {data?.results.map((item) => {
                 return (
                     <SwiperSlide key={item.id} className="!w-44">
-                        <CardItem title={item.title ?? item.name ?? 'Unknown name'} img={item.poster_path} />
+                        <CardItem
+                            onClickEvent={onReviewMovie}
+                            id={item.id}
+                            title={item.title ?? item.name ?? 'Unknown name'}
+                            img={item.poster_path}
+                        />
                     </SwiperSlide>
                 );
             })}

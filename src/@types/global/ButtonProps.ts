@@ -1,6 +1,6 @@
 
 export interface IGenres{
-    id: string,
+    id: string | number,
     name: string,
     type?: IGenres[]
 }
