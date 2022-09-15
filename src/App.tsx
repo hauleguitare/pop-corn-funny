@@ -6,36 +6,21 @@ import Footer from './layouts/footer';
 import Header from './layouts/header';
 import ClientRoutes from './pages/routes';
 
-interface GenresContext {
-    [K: string]: IGenres[];
-}
-
-const initialGenresContext: GenresContext = {
-    movie: [
-        {
-            id: 'null',
-            name: 'null',
-        },
-    ],
-    tv: [
-        {
-            id: 'null',
-            name: 'null',
-        },
-    ],
-};
+const initialGenresContext: Array<IGenres> = [];
 
 const GenresRequest = () => {
-    let init: GenresContext = {
-        movie: [],
-        tv: [],
-    };
+    let init: Array<IGenres> = [];
     const movie = fetchGenres('movie');
     const tv = fetchGenres('tv');
     Promise.all([movie, tv])
         .then((res) => {
-            init.movie = res[0].genres;
-            init.tv = res[1].genres;
+            var tempArr: IGenres[] = [];
+            tempArr.push(...res[0].genres);
+            tempArr.push(...res[1].genres);
+            const filterArr = tempArr.filter((val, idx, arr) => {
+                return arr.findIndex((v) => v.id === val.id && v.name === val.name) === idx;
+            });
+            init.push(...filterArr);
         })
         .catch((err) => {
             console.log('error: ', err);

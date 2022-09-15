@@ -10,7 +10,7 @@ const useParseUrl = (id?: number | string, title?: string) =>{
         setParseUrl(newArr?.join('-'));
     }, [id, title])
 
-    return parseUrl;
+    return [parseUrl] as const;
 }
 
 export default useParseUrl;

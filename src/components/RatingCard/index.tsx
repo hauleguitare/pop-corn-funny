@@ -10,7 +10,7 @@ const RatingCard: React.FunctionComponent<IRatingCardProps> = (props) => {
     return (
         <div
             className={
-                'absolute top-0 left-0 mx-4 my-4 h-[50px] transition-opacity duration-150 cursor-pointer flex rounded-md bg-white opacity-80 items-center hover:opacity-100'
+                'absolute top-0 left-0 mx-4 my-4 h-[50px] transition-opacity duration-150 cursor-pointer flex rounded-md bg-white opacity-80 items-center hover:opacity-100 z-20'
             }
         >
             <GiRoundStar className="mx-2 h-[30px] w-[30px] my-auto fill-yellow-500 flex-shrink-0" />

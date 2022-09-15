@@ -182,3 +182,14 @@ export const AiringTodayProps = {
         }
     ]
 }
+
+export const SEARCH_QUERY = {
+    genre: [],
+    sort_by: [],
+    minRuntime: [],
+    maxRuntime: [],
+    from: [],
+    to: [],
+    language: [],
+    include_adult: [],
+}

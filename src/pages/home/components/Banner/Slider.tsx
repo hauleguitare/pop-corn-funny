@@ -13,15 +13,18 @@ import { IMovie, ListResponse } from '@/@types/movies';
 import { IReturnWrapPromise } from '@/@types/global/WrapPromiseType';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import BannerLoading from './Loading';
+import ButtonGenres from '@/components/listGenres';
+import { IGenres } from '@/@types/global/ButtonProps';
 
 interface IBannerSliderProps {
     resource: {
         data: IReturnWrapPromise<ListResponse<IMovie>>;
     };
+    type: IGenres;
 }
 
 function BannerSlider(props: IBannerSliderProps) {
-    const { resource } = props;
+    const { resource, type } = props;
     const data = resource.data.read();
     return (
         <Swiper
@@ -39,6 +42,7 @@ function BannerSlider(props: IBannerSliderProps) {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             }}
+            className="rounded-lg"
         >
             {data?.results.map((item) => {
                 return (
@@ -47,7 +51,6 @@ function BannerSlider(props: IBannerSliderProps) {
                             <div className="relative flex mx-auto justify-center">
                                 <img
                                     src={`https://image.tmdb.org/t/p/w1280${item.backdrop_path}`}
-                                    className="rounded-lg"
                                     alt="backdrop movie"
                                 />
                                 <div className="absolute inset-0 bg-stone-dark-lighting/40">
@@ -71,7 +74,12 @@ function BannerSlider(props: IBannerSliderProps) {
                                     <span className="text-gray-300/50 text-base">
                                         {item.release_date?.toString() ?? item.first_air_date?.toString()}
                                     </span>
-                                    <span className="text-white text-base">Genres</span>
+                                    <span className="text-white text-base flex">
+                                        <ButtonGenres
+                                            genres_ids={item.genre_ids}
+                                            className="bg-stone-light-chocolate mx-2 my-2 text-sm up-tablet:text-xl"
+                                        />
+                                    </span>
                                     <p className="text-gray-100/60 text-sm hidden up-mobile:block">{item.overview}</p>
                                 </div>
                             </div>

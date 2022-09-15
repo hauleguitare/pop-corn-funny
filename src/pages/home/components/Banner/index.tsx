@@ -37,7 +37,7 @@ const SectionBanner: React.FunctionComponent<ISectionBannerProps> = (props) => {
             <BannerGenres changeGenres={handleChangeGenres} init={genres} />
             <div className="relative mx-auto rounded-lg">
                 <Suspense fallback={<BannerLoading />}>
-                    <BannerSlider resource={resource} />
+                    <BannerSlider resource={resource} type={genres.activeId} />
                 </Suspense>
             </div>
         </section>
