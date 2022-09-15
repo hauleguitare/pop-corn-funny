@@ -1,4 +1,4 @@
-import { IGenres } from '@/@types/global/ButtonProps';
+import { IGenres } from '@/@types/global/SectionType';
 import Button from '@/components/Button';
 import ButtonGroup from '@/components/ButtonGroup';
 import React, { useState } from 'react';

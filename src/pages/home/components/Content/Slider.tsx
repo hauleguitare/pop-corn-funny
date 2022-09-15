@@ -1,4 +1,4 @@
-import { IGenres } from '@/@types/global/ButtonProps';
+import { IGenres } from '@/@types/global/SectionType';
 import { IReturnWrapPromise } from '@/@types/global/WrapPromiseType';
 import { IMovie, ListResponse } from '@/@types/movies';
 import CardItem from '@/components/CardItem';

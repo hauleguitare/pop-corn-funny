@@ -1,12 +1,7 @@
-import React, { createContext, useEffect, useState } from 'react';
+import { AiringTodayProps, OnTvProps, PopularProps, TopRatedProps, UpcomingProps } from '@/asserts/contants/contants';
+import React from 'react';
 import SectionBanner from './components/Banner';
 import SectionContent from './components/Content';
-import { PopularProps, TopRatedProps, OnTvProps, UpcomingProps, AiringTodayProps } from '@/asserts/contants/contants';
-import ContentLoading from './components/Content/Loading';
-import ReviewCard from '@/components/ReviewCard';
-import { IGenres } from '@/@types/global/ButtonProps';
-import { fetchMovies } from '@/api/fetchMovies';
-import { fetchGenres } from '@/api/fetchGenres';
 
 interface IHomePageProps {}
 

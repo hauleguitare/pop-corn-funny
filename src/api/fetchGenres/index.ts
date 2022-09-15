@@ -1,4 +1,4 @@
-import { IGenres } from '@/@types/global/ButtonProps';
+import { IGenres } from '@/@types/global/SectionType';
 import { ListResponse } from '@/@types/movies';
 import axiosClient from '../config';
 

@@ -1,4 +1,4 @@
-import { IGenres } from '@/@types/global/ButtonProps';
+import { IGenres } from '@/@types/global/SectionType';
 import { GenresContext } from '@/App';
 import ListItem from '@/components/ListItem';
 import useReadParams from '@/hooks/useReadParams';
@@ -6,7 +6,6 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import React, { useContext, useState } from 'react';
 import { GrFormNext } from 'react-icons/gr';
 import { useSearchParams } from 'react-router-dom';
-import './activeId.css';
 
 interface IFilterGenresProps {}
 

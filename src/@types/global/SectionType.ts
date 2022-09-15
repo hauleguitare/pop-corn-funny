@@ -4,7 +4,7 @@ export interface IGenres{
     name: string,
     type?: IGenres[]
 }
-export interface IButtonProps{
+export interface ISectionType{
     id: string,
     name: string,
     type: IGenres[]

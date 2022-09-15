@@ -1,4 +1,4 @@
-import { IGenres } from '@/@types/global/ButtonProps';
+import { IGenres } from '@/@types/global/SectionType';
 import { fetchGenres } from '@/api/fetchGenres';
 import { fetchMovies } from '@/api/fetchMovies';
 import { GenresContext } from '@/App';

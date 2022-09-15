@@ -1,4 +1,4 @@
-import { IButtonProps, IGenres } from '@/@types/global/ButtonProps';
+import { ISectionType, IGenres } from '@/@types/global/SectionType';
 import { IMovie } from '@/@types/movies';
 import dataFetch from '@/utils/dataFetch';
 import React, { Suspense, useContext, useEffect, useState } from 'react';
@@ -9,7 +9,7 @@ import ReviewCard from '@/components/ReviewCard';
 
 interface ISectionContentProps {
     title: string;
-    typeSection: IButtonProps;
+    typeSection: ISectionType;
     initActive?: IGenres;
 }
 

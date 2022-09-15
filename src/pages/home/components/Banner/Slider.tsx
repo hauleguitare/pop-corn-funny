@@ -14,7 +14,7 @@ import { IReturnWrapPromise } from '@/@types/global/WrapPromiseType';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import BannerLoading from './Loading';
 import ButtonGenres from '@/components/listGenres';
-import { IGenres } from '@/@types/global/ButtonProps';
+import { IGenres } from '@/@types/global/SectionType';
 
 interface IBannerSliderProps {
     resource: {

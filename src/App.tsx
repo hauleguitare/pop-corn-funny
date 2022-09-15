@@ -1,6 +1,5 @@
-import React, { createContext } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { IGenres } from './@types/global/ButtonProps';
+import { createContext } from 'react';
+import { IGenres } from './@types/global/SectionType';
 import { fetchGenres } from './api/fetchGenres';
 import Footer from './layouts/footer';
 import Header from './layouts/header';
