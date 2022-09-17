@@ -1,20 +1,24 @@
 import { IGenres } from '@/@types/global/SectionType';
-import { GenresContext } from '@/App';
 import ListItem from '@/components/ListItem';
 import useReadParams from '@/hooks/useReadParams';
+import { GenreContext } from '@/shared/Context/GenreProvider';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import React, { useContext, useState } from 'react';
 import { GrFormNext } from 'react-icons/gr';
 import { useSearchParams } from 'react-router-dom';
+import FilterByReleaseDate from './FilterByReleaseDate';
+import FilterByRuntime from './FilterByRuntime';
 
-interface IFilterGenresProps {}
+interface IFilterGenresProps {
+    type: string;
+}
 
 const FilterGenres: React.FunctionComponent<IFilterGenresProps> = (props) => {
+    const { type } = props;
     const [openFilter, setOpenFilter] = useState(false);
     const [ReadParams] = useReadParams();
-    const [searchParams, setSearchParams] = useSearchParams(ReadParams);
+    const [searchParams, setSearchParams] = useSearchParams();
 
-    const Genres = useContext(GenresContext);
     const [parent] = useAutoAnimate({
         duration: 200,
         easing: 'ease-in-out',
@@ -42,6 +46,7 @@ const FilterGenres: React.FunctionComponent<IFilterGenresProps> = (props) => {
             className="my-4 px-4 py-4 bg-white rounded-lg cursor-pointer"
             ref={parent as React.RefObject<HTMLDivElement>}
         >
+            <p className="text-xl font-roboto py-2">Filter</p>
             <div
                 className="flex justify-between"
                 onClick={() => {
@@ -59,27 +64,37 @@ const FilterGenres: React.FunctionComponent<IFilterGenresProps> = (props) => {
             </div>
             {openFilter && (
                 <>
-                    <ListItem
-                        items={Genres}
-                        className="flex flex-wrap"
-                        renderItem={(item) => {
+                    <GenreContext.Consumer>
+                        {(val) => {
                             return (
-                                <li
-                                    onClick={() => {
-                                        handleOnClickGenre(item);
+                                <ListItem
+                                    items={val[type]}
+                                    className="flex flex-wrap"
+                                    renderItem={(item) => {
+                                        return (
+                                            <li
+                                                onClick={() => {
+                                                    handleOnClickGenre(item);
+                                                }}
+                                                key={item.id}
+                                                className={`${
+                                                    ReadParams['genre'].includes(item.id.toString())
+                                                        ? 'bg-blue-primary'
+                                                        : ''
+                                                } py-2 px-2 mx-2 my-2 ring-2 ring-black rounded-full transition-all duration-150`}
+                                            >
+                                                {item.name}
+                                            </li>
+                                        );
                                     }}
-                                    key={item.id}
-                                    className={`${
-                                        ReadParams['genre'].includes(item.id.toString()) ? 'bg-blue-primary' : ''
-                                    } py-2 px-2 mx-2 my-2 ring-2 ring-black rounded-full transition-all duration-150`}
-                                >
-                                    {item.name}
-                                </li>
+                                />
                             );
                         }}
-                    />
+                    </GenreContext.Consumer>
                 </>
             )}
+            <FilterByRuntime />
+            <FilterByReleaseDate />
         </div>
     );
 };

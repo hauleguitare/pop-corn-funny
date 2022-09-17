@@ -1,28 +1,27 @@
 import { IGenres } from '@/@types/global/SectionType';
-import { fetchGenres } from '@/api/fetchGenres';
-import { fetchMovies } from '@/api/fetchMovies';
-import { GenresContext } from '@/App';
 import React, { useContext, useEffect, useState } from 'react';
 
 interface IListGenresProps extends React.HTMLAttributes<HTMLSpanElement> {
+    listGenres?: IGenres[];
     genres_ids: number[];
 }
 
+const findGenresFromId = (listGenres: IGenres[], genre_ids: number[]) => {
+    const ArrFilter = listGenres.filter((val) => {
+        return genre_ids.includes(Number(val.id));
+    });
+    return ArrFilter;
+};
+
 const ListGenres: React.FunctionComponent<IListGenresProps> = (props) => {
-    const { genres_ids, className, ...rest } = props;
+    const { genres_ids, listGenres, className, ...rest } = props;
     const [genres, setGenres] = useState<IGenres[]>([]);
-    const context = useContext(GenresContext);
 
     useEffect(() => {
-        const findGenresFromId = (genre_ids: number[]) => {
-            const GenreFilter = context.filter((val) => {
-                return genre_ids.includes(Number(val.id));
-            });
-
-            return GenreFilter;
-        };
-        setGenres(findGenresFromId(genres_ids));
-    }, [genres_ids]);
+        if (listGenres) {
+            setGenres(findGenresFromId(listGenres, genres_ids));
+        }
+    }, [genres_ids, listGenres]);
     return (
         <ul className="flex flex-wrap">
             {genres.map((item) => {

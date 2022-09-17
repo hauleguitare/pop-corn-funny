@@ -1,20 +1,17 @@
-import * as React from 'react';
 import { GrNext, GrPrevious } from 'react-icons/gr';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 // import 'swiper/css/navigation';
+import { IGenres } from '@/@types/global/SectionType';
+import { IReturnWrapPromise } from '@/@types/global/WrapPromiseType';
+import { IMovie, ListResponse } from '@/@types/movies';
+import ListGenres from '@/components/listGenres';
+import { GenreContext } from '@/shared/Context/GenreProvider';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import dataFetch from '@/utils/dataFetch';
-import { IMovie, ListResponse } from '@/@types/movies';
-import { IReturnWrapPromise } from '@/@types/global/WrapPromiseType';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import BannerLoading from './Loading';
-import ButtonGenres from '@/components/listGenres';
-import { IGenres } from '@/@types/global/SectionType';
 
 interface IBannerSliderProps {
     resource: {
@@ -75,10 +72,15 @@ function BannerSlider(props: IBannerSliderProps) {
                                         {item.release_date?.toString() ?? item.first_air_date?.toString()}
                                     </span>
                                     <span className="text-white text-base flex">
-                                        <ButtonGenres
-                                            genres_ids={item.genre_ids}
-                                            className="bg-stone-light-chocolate mx-2 my-2 text-sm up-tablet:text-xl"
-                                        />
+                                        <GenreContext.Consumer>
+                                            {(valContext) => (
+                                                <ListGenres
+                                                    listGenres={valContext[type.id]}
+                                                    genres_ids={item.genre_ids}
+                                                    className="bg-stone-light-chocolate mx-2 my-2 text-sm up-tablet:text-xl"
+                                                />
+                                            )}
+                                        </GenreContext.Consumer>
                                     </span>
                                     <p className="text-gray-100/60 text-sm hidden up-mobile:block">{item.overview}</p>
                                 </div>

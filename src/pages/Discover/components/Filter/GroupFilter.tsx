@@ -1,8 +1,13 @@
 import React from 'react';
+import FilterByAdult from './FilterByAdult';
 import FilterGenres from './FilterByGenre';
+import FilterByReleaseDate from './FilterByReleaseDate';
+import FilterByRuntime from './FilterByRuntime';
 import SortBy, { IOption } from './SortBy';
 
-interface IGroupFilterProps {}
+interface IGroupFilterProps {
+    type: string;
+}
 
 const optionForSort: IOption[] = [
     { value: 'popularity.desc', label: 'Most Popularity' },
@@ -12,15 +17,13 @@ const optionForSort: IOption[] = [
 ];
 
 const GroupFilter: React.FunctionComponent<IGroupFilterProps> = (props) => {
+    const { type } = props;
     return (
-        <div className="shrink-0 flex-nowrap ml-4 w-[298px] max-w-[298px]">
+        <div className="shrink-0 flex-nowrap px-4 up-tablet:w-[298px] w-full">
             <div>
-                <span className="text-4xl">Filter Movie</span>
                 <div>
                     <SortBy options={optionForSort} />
-                    <FilterGenres />
-                    <div>Runtime</div>
-                    <div>Release Dates / First Air Dates</div>
+                    <FilterGenres type={type} />
                 </div>
             </div>
         </div>

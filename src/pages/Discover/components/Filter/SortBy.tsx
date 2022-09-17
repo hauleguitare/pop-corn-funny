@@ -1,7 +1,17 @@
+import useReadParams from '@/hooks/useReadParams';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import React, { useState } from 'react';
 import { GrFormNext } from 'react-icons/gr';
-import Select, { StylesConfig } from 'react-select';
+import { useSearchParams } from 'react-router-dom';
+import Select, {
+    ActionMeta,
+    GroupBase,
+    MultiValue,
+    OnChangeValue,
+    PropsValue,
+    SingleValue,
+    StylesConfig,
+} from 'react-select';
 
 export interface IOption {
     value: string;
@@ -12,7 +22,7 @@ interface ISortByProps {
     options: IOption[];
 }
 
-const style: StylesConfig = {
+const style: StylesConfig<IOption, false, GroupBase<IOption>> = {
     container: (styl) => ({ ...styl, marginTop: '1rem', minWidth: '100%' }),
     control: (styl) => ({ ...styl, cursor: 'pointer' }),
     option: (styl) => ({ ...styl, cursor: 'pointer' }),
@@ -22,6 +32,18 @@ const SortBy: React.FunctionComponent<ISortByProps> = (props) => {
     const { options } = props;
     const [openSort, setOpenSort] = useState(false);
     const [parent] = useAutoAnimate();
+    const [ReadParams] = useReadParams();
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const handleOnChange = (option: SingleValue<IOption>, actionMeta: ActionMeta<IOption>) => {
+        if (option) {
+            const sortBy = searchParams.get('sort_by');
+            setSearchParams({
+                ...ReadParams,
+                sort_by: option.value,
+            });
+        }
+    };
     return (
         <div
             className="my-4 px-4 py-4 bg-white rounded-lg cursor-pointer"
@@ -45,7 +67,7 @@ const SortBy: React.FunctionComponent<ISortByProps> = (props) => {
             {openSort && (
                 <div className="pt-2">
                     <p className="cursor-text">Sort Results by</p>
-                    <Select options={options} styles={style} />
+                    <Select onChange={handleOnChange} options={options} styles={style} defaultValue={options[0]} />
                 </div>
             )}
         </div>

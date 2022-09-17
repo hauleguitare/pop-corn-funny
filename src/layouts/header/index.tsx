@@ -5,6 +5,7 @@ import SearchBar from '@/components/SearchBar';
 import { useScrollEvent } from '@/hooks/useScrollEvent';
 import * as React from 'react';
 import { BiMenuAltLeft } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 import GroupMenu from './components/groupMenu';
 import MenuBar from './components/menuBar';
 
@@ -20,10 +21,8 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
     return (
         <header
             className={`sticky top-0 left-0 right-0 z-10 ${
-                scrollPos > 0
-                    ? 'up-tablet:bg-stone-darkest/30 up-tablet:opacity-50'
-                    : 'up-tablet:bg-stone-darkest up-tablet:opacity-100'
-            } bg-stone-darkest opacity-100 transition-all ease-linear duration-200 hover:bg-stone-darkest hover:opacity-100`}
+                scrollPos > 0 ? 'up-tablet:bg-stone-darkest/30 opacity-80' : 'up-tablet:bg-stone-darkest opacity-100'
+            } bg-stone-darkest transition-all ease-linear duration-200 hover:bg-stone-darkest hover:opacity-100`}
         >
             <HeaderContext.Provider value={{ MenuList, LoginList }}>
                 <div className="container flex up-tablet:justify-between justify-start items-center h-16 max-h-16">
@@ -33,9 +32,9 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
                         </button>
                     </div>
                     <div className="flex flex-row items-center">
-                        <div className="text-2xl text-yellow-500 font-merriweather font-bold">
+                        <Link to={'/'} className="text-2xl text-yellow-500 font-merriweather font-bold">
                             <p>POPCORN</p>
-                        </div>
+                        </Link>
                         <GroupMenu />
                     </div>
                     <div className="hidden text-white up-tablet:flex flex-row font-oswald">

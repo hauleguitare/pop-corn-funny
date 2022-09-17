@@ -1,7 +1,7 @@
 import { IMovie } from '@/@types/movies';
 import dataFetch from '@/utils/dataFetch';
 import React, { Suspense, useEffect, useState } from 'react';
-import BannerGenres from './Genres';
+import BannerTypeSection from './Genres';
 import BannerLoading from './Loading';
 import BannerSlider from './Slider';
 
@@ -34,7 +34,7 @@ const SectionBanner: React.FunctionComponent<ISectionBannerProps> = (props) => {
 
     return (
         <section>
-            <BannerGenres changeGenres={handleChangeGenres} init={genres} />
+            <BannerTypeSection changeGenres={handleChangeGenres} init={genres} />
             <div className="relative mx-auto rounded-lg">
                 <Suspense fallback={<BannerLoading />}>
                     <BannerSlider resource={resource} type={genres.activeId} />

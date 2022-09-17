@@ -1,8 +1,7 @@
+import { TrendingProps } from '@/asserts/contants/contants';
 import Button from '@/components/Button';
 import ButtonGroup from '@/components/ButtonGroup';
 import React, { useState } from 'react';
-import { TrendingProps } from '@/asserts/contants/contants';
-import { Identification } from '@/@types/movies';
 
 type initialState = {
     windows_time: string;
@@ -12,12 +11,12 @@ type initialState = {
     };
 };
 
-interface IBannerGenresProps {
+interface IBannerTypeSectionProps {
     init: initialState;
     changeGenres: (active: initialState) => void;
 }
 
-const BannerGenres: React.FunctionComponent<IBannerGenresProps> = (props) => {
+const BannerTypeSection: React.FunctionComponent<IBannerTypeSectionProps> = (props) => {
     const { init, changeGenres } = props;
     const [windows_time, setWindowsTime] = useState(init.windows_time);
     const [activeId, setActiveId] = useState(init.activeId);
@@ -73,4 +72,4 @@ const BannerGenres: React.FunctionComponent<IBannerGenresProps> = (props) => {
     );
 };
 
-export default BannerGenres;
+export default BannerTypeSection;

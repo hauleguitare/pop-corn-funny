@@ -4,6 +4,7 @@ import * as React from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
+import { GenreContext } from '../../shared/Context/GenreProvider';
 import ListGenres from '../listGenres';
 import RatingCard from '../RatingCard';
 
@@ -56,10 +57,19 @@ const ReviewCard: React.FunctionComponent<IReviewCardProps> = (props) => {
                                         ''}
                                 </span>
                                 <span className="text-white text-xl font-oswald pt-4">
-                                    <ListGenres
-                                        genres_ids={reviewMovie.genre_ids}
-                                        className="bg-blue-primary mx-2 text-sm up-tablet:text-xl"
-                                    />
+                                    <GenreContext.Consumer>
+                                        {(val) => {
+                                            return (
+                                                <>
+                                                    <ListGenres
+                                                        listGenres={val[type.toString()]}
+                                                        genres_ids={reviewMovie.genre_ids}
+                                                        className="bg-blue-primary mx-2 text-sm up-tablet:text-xl"
+                                                    />
+                                                </>
+                                            );
+                                        }}
+                                    </GenreContext.Consumer>
                                 </span>
                                 <div>
                                     <p className="text-white text-xl up-mobile:text-2xl font-oswald pt-4">Overview</p>
