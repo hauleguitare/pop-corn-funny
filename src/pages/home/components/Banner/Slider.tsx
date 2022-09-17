@@ -41,54 +41,49 @@ function BannerSlider(props: IBannerSliderProps) {
             }}
             className="rounded-lg"
         >
-            {data?.results.map((item) => {
-                return (
-                    <SwiperSlide key={item.id}>
-                        <Link to={'/hello'} className="relative group">
-                            <div className="relative flex mx-auto justify-center">
-                                <img
-                                    src={`https://image.tmdb.org/t/p/w1280${item.backdrop_path}`}
-                                    alt="backdrop movie"
-                                />
-                                <div className="absolute inset-0 bg-stone-dark-lighting/40">
-                                    <div className="absolute inset-0 w-16 h-16 up-tablet:w-20 up-tablet:h-20 z-20 mx-auto my-auto cursor-pointer">
-                                        <AiFillPlayCircle
-                                            size={'64px'}
-                                            className="opacity-50 group-hover:visible invisible transition-all ease-in duration-150 scale-125 group-hover:scale-100 fill-white/40 hover:fill-white"
-                                        />
-                                    </div>
-                                </div>
-                                <div
-                                    className="absolute inset-0 z-10 px-4 py-4 up-tablet:px-8 up-tablet:py-8 flex flex-col up-tablet:max-w-[50%]
-                font-merriweather text-start bg-gradient-to-l to-stone-800/30 from-transparent h-full"
-                                >
-                                    <span className="text-2xl up-tablet:text-4xl mb-0 up-tablet:mb-4 text-white font-bold capitalize flex-shrink-0">
-                                        {item.name ?? item.title}
-                                    </span>
-                                    <span className="text-lg up-tablet:text-xl text-white font-bold">
-                                        {item.name ?? item.title}
-                                    </span>
-                                    <span className="text-gray-300/50 text-base">
-                                        {item.release_date?.toString() ?? item.first_air_date?.toString()}
-                                    </span>
-                                    <span className="text-white text-base flex">
-                                        <GenreContext.Consumer>
-                                            {(valContext) => (
-                                                <ListGenres
-                                                    listGenres={valContext[type.id]}
-                                                    genres_ids={item.genre_ids}
-                                                    className="bg-stone-light-chocolate mx-2 my-2 text-sm up-tablet:text-xl"
-                                                />
-                                            )}
-                                        </GenreContext.Consumer>
-                                    </span>
-                                    <p className="text-gray-100/60 text-sm hidden up-mobile:block">{item.overview}</p>
+            {data?.results.map((item) => (
+                <SwiperSlide key={item.id}>
+                    <Link to={'/hello'} className="relative group">
+                        <div className="relative flex mx-auto justify-center">
+                            <img src={`https://image.tmdb.org/t/p/w1280${item.backdrop_path}`} alt="backdrop movie" />
+                            <div className="absolute inset-0 bg-stone-dark-lighting/40">
+                                <div className="absolute inset-0 w-16 h-16 up-tablet:w-20 up-tablet:h-20 z-20 mx-auto my-auto cursor-pointer">
+                                    <AiFillPlayCircle
+                                        size={'64px'}
+                                        className="opacity-50 group-hover:visible invisible transition-all ease-in duration-150 scale-125 group-hover:scale-100 fill-white/40 hover:fill-white"
+                                    />
                                 </div>
                             </div>
-                        </Link>
-                    </SwiperSlide>
-                );
-            })}
+                            <div
+                                className="absolute inset-0 z-10 px-4 py-4 up-tablet:px-8 up-tablet:py-8 flex flex-col up-tablet:max-w-[50%]
+                font-merriweather text-start bg-gradient-to-l to-stone-800/30 from-transparent h-full"
+                            >
+                                <span className="text-2xl up-tablet:text-4xl mb-0 up-tablet:mb-4 text-white font-bold capitalize flex-shrink-0">
+                                    {item.name ?? item.title}
+                                </span>
+                                <span className="text-lg up-tablet:text-xl text-white font-bold">
+                                    {item.name ?? item.title}
+                                </span>
+                                <span className="text-gray-300/50 text-base">
+                                    {item.release_date?.toString() ?? item.first_air_date?.toString()}
+                                </span>
+                                <span className="text-white text-base flex">
+                                    <GenreContext.Consumer>
+                                        {(valContext) => (
+                                            <ListGenres
+                                                listGenres={valContext[type.id]}
+                                                genres_ids={item.genre_ids}
+                                                className="bg-stone-light-chocolate mx-2 my-2 text-sm up-tablet:text-xl"
+                                            />
+                                        )}
+                                    </GenreContext.Consumer>
+                                </span>
+                                <p className="text-gray-100/60 text-sm hidden up-mobile:block">{item.overview}</p>
+                            </div>
+                        </div>
+                    </Link>
+                </SwiperSlide>
+            ))}
 
             <div
                 className="absolute bottom-0 hidden up-mobile:flex bg-stone-light-chocolate/50

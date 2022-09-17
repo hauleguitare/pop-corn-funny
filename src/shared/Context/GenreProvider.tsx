@@ -41,7 +41,6 @@ const GenreProvider: React.FunctionComponent<IGenreProviderProps> = (props) => {
     const { children } = props;
     const [genres, setGenres] = useState<IGenresContext>({});
 
-    console.log(genres);
     useEffect(() => {
         const getGenres = async () => {
             const movie = await fetchGenres('movie');

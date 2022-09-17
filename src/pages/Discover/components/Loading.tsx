@@ -1,31 +1,27 @@
 import Skeleton from '@/components/Skeleton.tsx';
 import * as React from 'react';
 
-interface IGenresPageLoadingProps {}
+interface IGenresPageLoadingProps {
+    widthCard?: string;
+    heightCard?: string;
+    total: number;
+}
 
 const GenresPageLoading: React.FunctionComponent<IGenresPageLoadingProps> = (props) => {
+    const { widthCard, heightCard, total } = props;
     return (
         <>
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
-            <Skeleton className="min-w-[140px] h-60 bg-stone-500  rounded-lg cursor-wait" />
+            {console.log()}
+            {Array.from(Array(total).keys()).map((val) => (
+                <Skeleton
+                    key={val}
+                    style={{
+                        width: widthCard,
+                        height: heightCard,
+                    }}
+                    className="bg-stone-500 rounded-lg cursor-wait"
+                />
+            ))}
         </>
     );
 };

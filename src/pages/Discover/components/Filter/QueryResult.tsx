@@ -20,40 +20,41 @@ const QueryResult: React.FunctionComponent<IQueryResultProps> = (props) => {
     >([`get-data-${type}-filter`, params], ({ pageParam = 1 }) => fetchDiscover(pageParam, type, params), {
         getNextPageParam: (result) => (result.page + 1 <= result.total_pages ? result.page + 1 : undefined),
     });
+
     if (isLoading) {
-        return <GenresPageLoading />;
+        return (
+            <div className="grid grid-cols-2 gap-8 up-laptop:grid-cols-5 w-full px-4">
+                <GenresPageLoading total={20} widthCard={'160px'} heightCard={'15rem'} />
+            </div>
+        );
     }
 
     if (isError) {
         return <div>ERROR...</div>;
     }
     return (
-        <div>
-            <div className="grid grid-cols-2 gap-8 up-laptop:grid-cols-5 w-full px-4">
-                {data ? (
+        <>
+            <div>
+                <div className="grid grid-cols-2 gap-8 up-laptop:grid-cols-5 w-full px-4">
                     <>
-                        {/* {data.pages[0].results.map((item) => {
-                            return (
-                                <CardItem img={item.poster_path} title={item.title ?? item.name ?? ''} id={item.id} />
-                            );
-                        })} */}
-                        {/* <p className="text-4xl text-white">{data.pages.flatMap}</p> */}
-                        {/* <ListItemResults pages={data.pages} /> */}
+                        {data ? (
+                            <ListItemResults pages={data.pages} />
+                        ) : (
+                            <GenresPageLoading total={20} widthCard={'160px'} heightCard={'15rem'} />
+                        )}
+                        {isFetching && <GenresPageLoading total={20} widthCard={'160px'} heightCard={'15rem'} />}
                     </>
-                ) : (
-                    <GenresPageLoading />
-                )}
+                </div>
+                <div
+                    onClick={() => {
+                        fetchNextPage();
+                    }}
+                    className="flex justify-center py-2 mx-4 mt-4 bg-blue-primary rounded-lg cursor-pointer"
+                >
+                    <span className="text-base">LOAD MORE</span>
+                </div>
             </div>
-            {/* <div
-                onClick={() => {
-                    fetchNextPage();
-                }}
-                className="flex justify-center py-2 mx-4 mt-4 bg-blue-primary rounded-lg cursor-pointer"
-            >
-                <span className="text-base">LOAD MORE</span>
-            </div> */}
-            {isFetching && <div>Is fetching...</div>}
-        </div>
+        </>
     );
 };
 

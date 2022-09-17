@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface ISkeletonProps {
+interface ISkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
     className?: string;
     children?: React.ReactNode;
 }

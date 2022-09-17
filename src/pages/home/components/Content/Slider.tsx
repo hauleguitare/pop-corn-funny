@@ -65,18 +65,16 @@ const ContentSlider: React.FunctionComponent<IContentSliderProps> = (props) => {
                 prevEl: '.swiper-button-prev',
             }}
         >
-            {data?.results.map((item) => {
-                return (
-                    <SwiperSlide key={item.id} className="!w-44">
-                        <CardItem
-                            onClickEvent={onReviewMovie}
-                            id={item.id}
-                            title={item.title ?? item.name ?? 'Unknown name'}
-                            img={item.poster_path}
-                        />
-                    </SwiperSlide>
-                );
-            })}
+            {data?.results.map((item) => (
+                <SwiperSlide key={item.id} className="!w-44">
+                    <CardItem
+                        onClickEvent={onReviewMovie}
+                        id={item.id}
+                        title={item.title ?? item.name ?? 'Unknown name'}
+                        img={item.poster_path}
+                    />
+                </SwiperSlide>
+            ))}
 
             <div className="absolute top-0 left-0 bottom-0 w-10 flex items-center opacity-80 hover:opacity-100 backdrop-blur-lg bg-black/30 z-10 transition duration-150 rounded-tr-md rounded-br-md">
                 <div className="swiper-button-prev">
