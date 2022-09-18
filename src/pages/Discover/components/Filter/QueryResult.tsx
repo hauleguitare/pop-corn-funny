@@ -40,9 +40,9 @@ const QueryResult: React.FunctionComponent<IQueryResultProps> = (props) => {
                         {data ? (
                             <ListItemResults pages={data.pages} />
                         ) : (
-                            <GenresPageLoading total={20} widthCard={'160px'} heightCard={'15rem'} />
+                            <GenresPageLoading total={20} widthCard={'227px'} heightCard={'15rem'} />
                         )}
-                        {isFetching && <GenresPageLoading total={20} widthCard={'160px'} heightCard={'15rem'} />}
+                        {isFetching && <GenresPageLoading total={20} widthCard={'160px'} heightCard={'220px'} />}
                     </>
                 </div>
                 <div
