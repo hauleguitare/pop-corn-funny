@@ -1,14 +1,12 @@
-import { IListProps, MenuList, LoginList } from '@/asserts/contants/contants';
+import { LoginList, MenuList } from '@/asserts/contants/contants';
 import ProfileGuest from '@/asserts/images/ProfileGuest.png';
-import ListItem from '@/components/ListItem';
 import Logo from '@/components/Logo';
 import SearchBar from '@/components/SearchBar';
 import { useScrollEvent } from '@/hooks/useScrollEvent';
 import * as React from 'react';
 import { BiMenuAltLeft } from 'react-icons/bi';
-import { Link } from 'react-router-dom';
-import GroupMenu from './components/groupMenu';
-import MenuBar from './components/menuBar';
+import GroupMenu from './components/Menu/groupMenu';
+import ResponsiveMenuBar from './components/Responsive/menuBar';
 
 interface IHeaderProps {}
 
@@ -52,7 +50,7 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
                         </div>
                     </div>
                 </div>
-                <MenuBar isOpenMenu={openMenu} handleOnMenu={handleOpenMenu} />
+                <ResponsiveMenuBar isOpenMenu={openMenu} handleOnMenu={handleOpenMenu} />
             </HeaderContext.Provider>
         </header>
     );

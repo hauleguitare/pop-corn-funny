@@ -33,6 +33,8 @@ const ContentSlider: React.FunctionComponent<IContentSliderProps> = (props) => {
     return (
         <Swiper
             slidesPerView={'auto'}
+            preventClicksPropagation
+            preventClicks={false}
             slidesPerGroup={5}
             modules={[Navigation]}
             watchSlidesProgress

@@ -2,18 +2,12 @@ import Logo from '@/components/Logo';
 import * as React from 'react';
 import { BsFacebook, BsGithub, BsTwitter, BsYoutube } from 'react-icons/bs';
 import { RiCopyrightLine } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
 
-interface IFooterProps {
-    url?: string;
-}
+interface IFooterProps {}
 
 const Footer: React.FunctionComponent<IFooterProps> = (props) => {
     return (
         <footer
-            // style={{
-            //     backgroundImage: `url("https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,032541,01b4e4)${randomImage}")`,
-            // }}
             className={
                 'bg-gradient-to-br to-stone-darkest via-blue-primary/5 from-blue-primary/10 backdrop-blur-lg mt-8'
             }

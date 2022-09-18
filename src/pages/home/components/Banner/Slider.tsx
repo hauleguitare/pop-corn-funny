@@ -26,6 +26,7 @@ function BannerSlider(props: IBannerSliderProps) {
     return (
         <Swiper
             slidesPerView={1}
+            preventClicks={false}
             modules={[Autoplay, Pagination, Navigation]}
             loop={true}
             autoplay={{

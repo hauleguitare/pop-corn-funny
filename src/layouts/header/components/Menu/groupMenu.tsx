@@ -1,7 +1,7 @@
 import { IListProps } from '@/asserts/contants/contants';
 import ListItem from '@/components/ListItem';
 import * as React from 'react';
-import { HeaderContext } from '..';
+import { HeaderContext } from '../..';
 import SubMenu from './subMenu';
 
 interface IGroupMenuProps {}

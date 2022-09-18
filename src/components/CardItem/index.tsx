@@ -2,6 +2,7 @@ import Fallback from '@/asserts/images/FallBack.png';
 import * as React from 'react';
 import { BiPlayCircle } from 'react-icons/bi';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 import Skeleton from '../Skeleton.tsx';
 interface ICardItemProps {
     title: string;
@@ -20,8 +21,7 @@ const CardItem: React.FunctionComponent<ICardItemProps> = (props) => {
             <div className="group hover:scale-105 rounded-md overflow-hidden transition ease-in duration-150 relative object-cover">
                 <LazyLoadImage
                     src={img ? `https://image.tmdb.org/t/p/w342/${img}` : Fallback}
-                    alt={`poster: ${title}`}
-                    effect="black-and-white"
+                    effect={'opacity'}
                     placeholder={skeleton ?? <Skeleton className="w-44 h-[264px] bg-stone-chocolate" />}
                 />
                 {/* <img src={img ? `https://image.tmdb.org/t/p/w342/${img}` : Fallback} className="object-cover" /> */}
