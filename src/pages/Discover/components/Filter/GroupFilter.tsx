@@ -19,7 +19,7 @@ const optionForSort: IOption[] = [
 const GroupFilter: React.FunctionComponent<IGroupFilterProps> = (props) => {
     const { type } = props;
     return (
-        <div className="shrink-0 flex-nowrap px-4 up-tablet:w-[298px] w-full">
+        <div className="shrink-0 flex-nowrap up-tablet:pl-0 pl-4 pr-4 up-tablet:w-[298px] w-full">
             <div>
                 <div>
                     <SortBy options={optionForSort} />

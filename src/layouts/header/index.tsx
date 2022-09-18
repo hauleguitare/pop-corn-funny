@@ -1,6 +1,7 @@
 import { IListProps, MenuList, LoginList } from '@/asserts/contants/contants';
 import ProfileGuest from '@/asserts/images/ProfileGuest.png';
 import ListItem from '@/components/ListItem';
+import Logo from '@/components/Logo';
 import SearchBar from '@/components/SearchBar';
 import { useScrollEvent } from '@/hooks/useScrollEvent';
 import * as React from 'react';
@@ -25,16 +26,14 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
             } bg-stone-darkest transition-all ease-linear duration-200 hover:bg-stone-darkest hover:opacity-100`}
         >
             <HeaderContext.Provider value={{ MenuList, LoginList }}>
-                <div className="container flex up-tablet:justify-between justify-start items-center h-16 max-h-16">
+                <div className="container flex up-tablet:justify-between justify-start items-center h-16 max-w-7xl max-h-16">
                     <div className="mx-2 up-tablet:hidden">
                         <button onClick={handleOpenMenu}>
                             <BiMenuAltLeft size={'40px'} className="fill-white" />
                         </button>
                     </div>
                     <div className="flex flex-row items-center">
-                        <Link to={'/'} className="text-2xl text-yellow-500 font-merriweather font-bold">
-                            <p>POPCORN</p>
-                        </Link>
+                        <Logo title="POPCORN" className="text-2xl" />
                         <GroupMenu />
                     </div>
                     <div className="hidden text-white up-tablet:flex flex-row font-oswald">
