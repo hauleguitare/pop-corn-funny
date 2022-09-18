@@ -15,14 +15,9 @@ interface IFilterGenresProps {
 
 const FilterGenres: React.FunctionComponent<IFilterGenresProps> = (props) => {
     const { type } = props;
-    const [openFilter, setOpenFilter] = useState(false);
+    const [isOpenfilterGenres, setOpenfilterGenres] = useState(false);
     const [ReadParams] = useReadParams();
     const [searchParams, setSearchParams] = useSearchParams();
-
-    const [parent] = useAutoAnimate({
-        duration: 200,
-        easing: 'ease-in-out',
-    });
 
     const handleOnClickGenre = (genre: IGenres) => {
         const listGenres = searchParams.getAll('genre');
@@ -42,27 +37,23 @@ const FilterGenres: React.FunctionComponent<IFilterGenresProps> = (props) => {
     };
 
     return (
-        <div
-            className="my-4 px-4 py-4 bg-white rounded-lg cursor-pointer"
-            ref={parent as React.RefObject<HTMLDivElement>}
-        >
-            <p className="text-xl font-roboto py-2">Filter</p>
+        <>
             <div
                 className="flex justify-between"
                 onClick={() => {
-                    setOpenFilter(!openFilter);
+                    setOpenfilterGenres(!isOpenfilterGenres);
                 }}
             >
-                <p>Genres Filter</p>
+                <p className="text-xl py-2">Genres Filter</p>
                 <span>
                     <GrFormNext
                         className={`${
-                            openFilter ? 'rotate-90' : 'rotate-0'
+                            isOpenfilterGenres ? 'rotate-90' : 'rotate-0'
                         } h-full w-full transition-transform duration-[200ms]`}
                     />
                 </span>
             </div>
-            {openFilter && (
+            {isOpenfilterGenres && (
                 <>
                     <GenreContext.Consumer>
                         {(val) => {
@@ -93,9 +84,7 @@ const FilterGenres: React.FunctionComponent<IFilterGenresProps> = (props) => {
                     </GenreContext.Consumer>
                 </>
             )}
-            <FilterByRuntime />
-            <FilterByReleaseDate />
-        </div>
+        </>
     );
 };
 

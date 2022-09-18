@@ -70,7 +70,7 @@ const FilterByRuntime: React.FunctionComponent<IFilterByRuntimeProps> = (props) 
 
     return (
         <>
-            <p className="text-black text-xl py-4">Runtime</p>
+            <p className="text-black text-xl py-2">Runtime</p>
             <div className="flex justify-between">
                 <span className="font-merriweather before:font-bold before:pr-2 before:text-black after:text-black after:pl-1 after:content-['min'] before:content-['From'] text-base text-black">
                     {minRange}

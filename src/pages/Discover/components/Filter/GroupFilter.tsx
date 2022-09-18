@@ -1,5 +1,5 @@
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 import React from 'react';
-import FilterByAdult from './FilterByAdult';
 import FilterGenres from './FilterByGenre';
 import FilterByReleaseDate from './FilterByReleaseDate';
 import FilterByRuntime from './FilterByRuntime';
@@ -18,13 +18,22 @@ const optionForSort: IOption[] = [
 
 const GroupFilter: React.FunctionComponent<IGroupFilterProps> = (props) => {
     const { type } = props;
+    const [parent] = useAutoAnimate({
+        duration: 200,
+        easing: 'ease-in-out',
+    });
+
     return (
         <div className="shrink-0 flex-nowrap up-tablet:pl-0 pl-4 pr-4 up-tablet:w-[298px] w-full">
-            <div>
-                <div>
-                    <SortBy options={optionForSort} />
-                    <FilterGenres type={type} />
-                </div>
+            <SortBy options={optionForSort} />
+            <div
+                className="my-4 px-4 py-4 bg-white rounded-lg cursor-pointer"
+                ref={parent as React.RefObject<HTMLDivElement>}
+            >
+                <p className="text-xl font-roboto py-2">Filter</p>
+                <FilterGenres type={type} />
+                <FilterByRuntime />
+                <FilterByReleaseDate />
             </div>
         </div>
     );

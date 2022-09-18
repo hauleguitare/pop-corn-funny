@@ -1,26 +1,37 @@
-import Fallback from '@/asserts/images/FallBack.png';
+import FallBackCard from '@/asserts/images/Fallback_Card.png';
 import * as React from 'react';
 import { BiPlayCircle } from 'react-icons/bi';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
+import RatingCard from '../RatingCard';
 import Skeleton from '../Skeleton.tsx';
 interface ICardItemProps {
     title: string;
     id: string | number;
     img?: string;
+    widthImage?: string;
     url?: string;
     className?: string;
+    vote_average?: number;
     skeleton?: JSX.Element;
     onClickEvent?: (e: React.MouseEvent | React.TouchEvent, id: string | number) => void;
 }
 
 const CardItem: React.FunctionComponent<ICardItemProps> = (props) => {
-    const { title, img, url, className, skeleton, onClickEvent, id } = props;
+    const { title, img, vote_average, widthImage, url, className, skeleton, onClickEvent, id } = props;
     return (
-        <a href="#" onClick={onClickEvent && ((e) => onClickEvent(e, id))}>
+        <a href="#" onClick={onClickEvent && ((e) => onClickEvent(e, id))} className="relative">
+            {vote_average && (
+                <RatingCard
+                    popular_rating={vote_average}
+                    className={
+                        'absolute top-0 left-0 my-1 mx-1 transition-opacity duration-150 cursor-pointer flex rounded-md bg-white opacity-80 items-center hover:opacity-100 z-20'
+                    }
+                />
+            )}
             <div className="group hover:scale-105 rounded-md overflow-hidden transition ease-in duration-150 relative object-cover">
                 <LazyLoadImage
-                    src={img ? `https://image.tmdb.org/t/p/w342/${img}` : Fallback}
+                    src={img ? `https://image.tmdb.org/t/p/${widthImage}/${img}` : FallBackCard}
                     effect={'opacity'}
                     placeholder={skeleton ?? <Skeleton className="w-44 h-[264px] bg-stone-chocolate" />}
                 />
@@ -37,6 +48,10 @@ const CardItem: React.FunctionComponent<ICardItemProps> = (props) => {
             </div>
         </a>
     );
+};
+
+CardItem.defaultProps = {
+    widthImage: 'w342',
 };
 
 export default CardItem;
