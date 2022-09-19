@@ -1,10 +1,10 @@
-import { Identification } from '@/@types/movies';
+import { IListProps } from '@/asserts/contants/contants';
 import ListItem from '@/components/ListItem';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 interface ISubMenuProps {
-    subMenu?: Array<Identification>;
+    subMenu?: IListProps[];
 }
 
 const SubMenu: React.FunctionComponent<ISubMenuProps> = (props) => {
@@ -12,15 +12,15 @@ const SubMenu: React.FunctionComponent<ISubMenuProps> = (props) => {
     return (
         <>
             {subMenu && (
-                <div className="absolute bg-stone-chocolate top-10 left-2 right-0 min-w-[9rem] invisible group-hover:visible rounded-md">
+                <div className="absolute z-10 bg-stone-chocolate top-10 left-2 right-0 min-w-[9rem] invisible group-hover:visible rounded-md">
                     <ListItem
                         className="text-white text-lg px-4 py-2 flex flex-col text-start"
                         items={subMenu}
                         renderItem={(item) => {
                             return (
-                                <a href={`/${item.id.toString()}`} key={item.id}>
+                                <Link to={`${item.url}`} key={item.id}>
                                     <span className="capitalize text-base">{item.name}</span>
-                                </a>
+                                </Link>
                             );
                         }}
                     />

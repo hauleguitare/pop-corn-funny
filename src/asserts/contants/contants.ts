@@ -16,7 +16,7 @@ export const MenuList: IListProps[] =[
             {
                 id: 'movie_popular',
                 name: 'popular',
-                url: '/popular'
+                url: '/movie'
             },
             {
                 id: 'movie_top-rated',
@@ -42,7 +42,7 @@ export const MenuList: IListProps[] =[
             {
                 id: 'tv_popular',
                 name: 'popular',
-                url: '/upcoming'
+                url: '/tv'
             },
             {
                 id: 'tv_top-rated',

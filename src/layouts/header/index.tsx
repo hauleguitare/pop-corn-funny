@@ -39,16 +39,16 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
                             <GroupMenu />
                         </div>
                         <div className="hidden text-white up-tablet:flex flex-row font-oswald">
-                            <div className="px-2 py-2 relative">
+                            <div className="px-2 relative">
                                 <SearchBar />
                             </div>
-                            <div className="px-2 py-2 relative group">
+                            <div className="px-2 relative group">
                                 <a href="#">
                                     <img src={ProfileGuest} className="max-h-8 ring-2 rounded-full ring-white" />
                                 </a>
                             </div>
                             <div className="flex flex-row items-center">
-                                <a href="#" className="px-2 py-2 relative group">
+                                <a href="#" className="px-2 relative group">
                                     <p>Login</p>
                                 </a>
                             </div>

@@ -3,7 +3,7 @@ import CardItem from '@/components/CardItem';
 import RatingCard from '@/components/RatingCard';
 import { accessSync } from 'fs';
 import React, { Fragment, useState } from 'react';
-import DiscoverNotFound from '../NotFound';
+import DiscoverNotFound from './components/NotFound';
 
 interface IListItemResultsProps {
     pages: ListResponse<IMovie>[];

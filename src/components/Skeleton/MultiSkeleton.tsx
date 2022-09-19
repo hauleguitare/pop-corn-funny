@@ -1,14 +1,15 @@
-import Skeleton from '@/components/Skeleton.tsx';
+import Skeleton from '@/components/Skeleton';
 import * as React from 'react';
 
-interface IGenresPageLoadingProps {
+interface IMultiSkeletonProps {
     widthCard?: string;
     heightCard?: string;
+    className?: string;
     total: number;
 }
 
-const GenresPageLoading: React.FunctionComponent<IGenresPageLoadingProps> = (props) => {
-    const { widthCard, heightCard, total } = props;
+const MultiSkeleton: React.FunctionComponent<IMultiSkeletonProps> = (props) => {
+    const { widthCard, heightCard, total, className } = props;
     return (
         <>
             {console.log()}
@@ -19,11 +20,15 @@ const GenresPageLoading: React.FunctionComponent<IGenresPageLoadingProps> = (pro
                         width: widthCard,
                         height: heightCard,
                     }}
-                    className="bg-stone-500 rounded-lg cursor-wait"
+                    className={`${className} bg-stone-500 rounded-lg cursor-wait`}
                 />
             ))}
         </>
     );
 };
 
-export default GenresPageLoading;
+MultiSkeleton.defaultProps = {
+    className: '',
+};
+
+export default MultiSkeleton;

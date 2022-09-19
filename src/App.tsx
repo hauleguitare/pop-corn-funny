@@ -6,11 +6,11 @@ import GenreProvider from './shared/Context/GenreProvider';
 function App() {
     return (
         <div className="App bg-stone-dark-lighting">
+            <Header />
             <GenreProvider>
-                <Header />
                 <ClientRoutes />
-                <Footer />
             </GenreProvider>
+            <Footer />
         </div>
     );
 }

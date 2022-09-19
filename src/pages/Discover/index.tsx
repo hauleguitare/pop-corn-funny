@@ -1,12 +1,8 @@
-import Skeleton from '@/components/Skeleton.tsx';
+import { IParams } from '@/@types/global/SEARCH_QUERY';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import GroupFilter from './components/Filter/GroupFilter';
-import QueryResult from './components/Filter/QueryResult';
-
-export interface IParams {
-    [key: string]: string | number;
-}
+import QueryResults from './QueryResult';
 
 interface IDiscoverPageProps {
     type: string;
@@ -37,7 +33,7 @@ const DiscoverPage: React.FunctionComponent<IDiscoverPageProps> = (props) => {
     return (
         <div className="container mt-4 max-w-[1280px] flex flex-col up-tablet:flex-row overflow-hidden">
             <GroupFilter type={type} />
-            <QueryResult type={type} params={currentParams} />
+            <QueryResults type={type} params={currentParams} />
         </div>
     );
 };

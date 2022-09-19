@@ -14,15 +14,12 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 interface IBannerSliderProps {
-    resource: {
-        data: IReturnWrapPromise<ListResponse<IMovie>>;
-    };
+    resource: ListResponse<IMovie>;
     type: IGenres;
 }
 
 function BannerSlider(props: IBannerSliderProps) {
     const { resource, type } = props;
-    const data = resource.data.read();
     return (
         <Swiper
             slidesPerView={1}
@@ -42,7 +39,7 @@ function BannerSlider(props: IBannerSliderProps) {
             }}
             className="rounded-lg"
         >
-            {data?.results.map((item) => (
+            {resource?.results.map((item) => (
                 <SwiperSlide key={item.id}>
                     <Link to={'/hello'} className="relative group">
                         <div className="relative flex mx-auto justify-center">

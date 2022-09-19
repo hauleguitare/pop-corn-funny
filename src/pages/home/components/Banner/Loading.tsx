@@ -1,4 +1,4 @@
-import Skeleton from '@/components/Skeleton.tsx';
+import Skeleton from '@/components/Skeleton';
 import * as React from 'react';
 
 interface IBannerLoadingProps {}

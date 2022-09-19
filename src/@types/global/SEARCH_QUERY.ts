@@ -8,3 +8,7 @@ export interface ISEARCH_QUERY{
     language: string[],
     include_adult: string[],
 };
+
+export interface IParams {
+    [key: string]: string | undefined;
+}

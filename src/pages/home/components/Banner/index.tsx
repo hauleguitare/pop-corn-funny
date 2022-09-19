@@ -1,5 +1,7 @@
-import { IMovie } from '@/@types/movies';
+import { IMovie, ListResponse } from '@/@types/movies';
+import { fetchMovies } from '@/api/fetchMovies';
 import dataFetch from '@/utils/dataFetch';
+import { useQuery } from '@tanstack/react-query';
 import React, { Suspense, useEffect, useState } from 'react';
 import BannerTypeSection from './Genres';
 import BannerLoading from './Loading';
@@ -18,27 +20,24 @@ const initialBannerGenres = {
 const initialResource = dataFetch<IMovie>('trending', 'all/day');
 
 const SectionBanner: React.FunctionComponent<ISectionBannerProps> = (props) => {
-    const [resource, setResource] = useState(initialResource);
     const [genres, setGenres] = useState(initialBannerGenres);
+    const endpoint = `${genres.activeId.id}/${genres.windows_time}`;
+    const { isLoading, data, error } = useQuery<ListResponse<IMovie>, Error>(
+        [`get-list-trending-${genres.activeId.id}`],
+        () => {
+            return fetchMovies<IMovie>('trending', endpoint);
+        }
+    );
+
     const handleChangeGenres = (active: typeof genres) => {
         setGenres(active);
     };
-    useEffect(() => {
-        const changeBanner = () => {
-            var endpoint = `${genres.activeId.id}/${genres.windows_time}`;
-            const newResource = dataFetch<IMovie>('trending', endpoint);
-            setResource(newResource);
-        };
-        changeBanner();
-    }, [genres]);
 
     return (
         <section>
             <BannerTypeSection changeGenres={handleChangeGenres} init={genres} />
             <div className="relative mx-auto rounded-lg">
-                <Suspense fallback={<BannerLoading />}>
-                    <BannerSlider resource={resource} type={genres.activeId} />
-                </Suspense>
+                {data ? <BannerSlider resource={data} type={genres.activeId} /> : <BannerLoading />}
             </div>
         </section>
     );

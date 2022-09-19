@@ -1,5 +1,5 @@
+import { IParams } from '@/@types/global/SEARCH_QUERY';
 import { ListResponse } from '@/@types/movies';
-import { IParams } from '@/pages/Discover';
 import axiosClient from '../config';
 
 
@@ -11,12 +11,12 @@ export async function fetchMovies<T>(type: string, endpoint: string){
     return axiosClient.get<ListResponse<T>>(_url, {params}).then((res) => res.data);
 }
 
-export async function fetchDiscover<T>(page: number, type: string, paramsOption: IParams = {}){
+export async function fetchDiscover<T>(page: number, type: string, query: IParams = {}){
     let _url = `/discover/${type}`;
     var params ={
         api_key: process.env.REACT_APP_API_KEY,
         page: page,
-        ...paramsOption
+        ...query
     }
     const res = axiosClient.get<ListResponse<T>>(_url, {params}).then((res) => res.data);
     return res;

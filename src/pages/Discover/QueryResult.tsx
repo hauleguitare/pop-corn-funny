@@ -1,19 +1,18 @@
+import { IParams } from '@/@types/global/SEARCH_QUERY';
 import { IMovie, ListResponse } from '@/@types/movies';
 import { fetchDiscover } from '@/api/fetchMovies';
-import CardItem from '@/components/CardItem';
+import MultiSkeleton from '@/components/Skeleton/MultiSkeleton';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import React, { Fragment } from 'react';
-import { IParams } from '../..';
-import GenresPageLoading from '../Loading';
-import DiscoverNotFound from '../NotFound';
+import React from 'react';
+import DiscoverNotFound from './components/NotFound';
 import ListItemResults from './ListItemResults';
 
-interface IQueryResultProps {
+interface IQueryResultsProps {
     type: string;
     params: IParams;
 }
 
-const QueryResult: React.FunctionComponent<IQueryResultProps> = (props) => {
+const QueryResults: React.FunctionComponent<IQueryResultsProps> = (props) => {
     const { type, params } = props;
     const { data, isLoading, isError, error, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery<
         ListResponse<IMovie>,
@@ -24,7 +23,7 @@ const QueryResult: React.FunctionComponent<IQueryResultProps> = (props) => {
     if (isLoading) {
         return (
             <div className="grid grid-cols-2 gap-8 up-laptop:grid-cols-5 w-full px-4">
-                <GenresPageLoading total={20} widthCard={'160px'} heightCard={'15rem'} />
+                <MultiSkeleton total={20} widthCard={'160px'} heightCard={'15rem'} />
             </div>
         );
     }
@@ -47,9 +46,9 @@ const QueryResult: React.FunctionComponent<IQueryResultProps> = (props) => {
                         {data ? (
                             <ListItemResults pages={data.pages} />
                         ) : (
-                            <GenresPageLoading total={20} widthCard={'227px'} heightCard={'15rem'} />
+                            <MultiSkeleton total={20} widthCard={'227px'} heightCard={'15rem'} />
                         )}
-                        {isFetching && <GenresPageLoading total={20} widthCard={'160px'} heightCard={'220px'} />}
+                        {isFetching && <MultiSkeleton total={20} widthCard={'160px'} heightCard={'220px'} />}
                     </>
                 </div>
                 {data.pages.reduce((acc, curr) => [...acc, ...curr.results], [] as Array<IMovie>).length >= 20 && (
@@ -70,4 +69,4 @@ const QueryResult: React.FunctionComponent<IQueryResultProps> = (props) => {
     );
 };
 
-export default QueryResult;
+export default QueryResults;
